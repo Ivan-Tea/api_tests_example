@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run All tests
-      uses: python -m pytest -vv tests
+      run: python -m pytest -vv tests
