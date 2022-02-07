@@ -1,0 +1,4 @@
+.pytest_cache
+.idea
+venv
+config/auth.py
