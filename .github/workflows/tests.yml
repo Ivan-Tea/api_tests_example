@@ -10,5 +10,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Run All tests
-      run: python -m pytest -vv tests
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - run: pip install -r requirements.txt
+      - run: python -m pytest -vv tests
