@@ -1,6 +1,10 @@
-from test_data import data_lists, helper
+import allure
+import pytest
+
+from api_data import data_lists, helper
 
 
+@allure.severity(allure.severity_level.BLOCKER)
 def test_get_list(new_list):
     required_fields = ['name', 'id', 'idBoard']
     get_list = data_lists.get_list(new_list['id'])
@@ -11,6 +15,8 @@ def test_get_list(new_list):
            [new_list['id'], new_list['name'], new_list['idBoard']]
 
 
+@allure.severity(allure.severity_level.BLOCKER)
+@pytest.mark.skip
 def test_update_list(new_list):
     new_data_for_list = {'name': 'updated_list'}
     update_list = data_lists.update_list(new_list['id'], new_data_for_list)
@@ -18,6 +24,7 @@ def test_update_list(new_list):
     assert update_list.json()['name'] == 'updated_list'
 
 
+@allure.severity(allure.severity_level.BLOCKER)
 def test_create_list():
     required_fields = ['id', 'name']
     data_for_list = {
@@ -31,6 +38,7 @@ def test_create_list():
     assert create_list.json()['name'] == data_for_list['name']
 
 
+@allure.severity(allure.severity_level.CRITICAL)
 def test_archive_list(new_list):
     value = {'closed': 'true'}
     archived_list = data_lists.archive_a_list(new_list['id'], value)
@@ -38,6 +46,7 @@ def test_archive_list(new_list):
     assert archived_list.json()['closed']
 
 
+@allure.severity(allure.severity_level.CRITICAL)
 def test_unarchive_list(new_list):
     archive_value = {'closed': 'true'}
     archived_list = data_lists.archive_a_list(new_list['id'], archive_value)

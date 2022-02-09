@@ -1,10 +1,17 @@
 import pytest
+import allure
 from faker import Faker
-from test_data import data_lists
+from api_data import data_lists
+
+
+@allure.step('step in conftest.py')
+def conftest_step():
+    pass
 
 
 @pytest.fixture()
 def new_list():
+    conftest_step()
     fake = Faker()
     data_for_list = {
         'name': f'{fake.first_name()}',
