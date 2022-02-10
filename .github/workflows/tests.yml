@@ -9,10 +9,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
         with:
+          api_key: ${{ secrets.API_KEY }}
+          api_token: ${{ secrets.API_TOKEN }}
           python-version: '3.8'
       - run: pip install -r requirements.txt
-      - run: python -m pytest -vv tests
+      - run: pytest

@@ -5,9 +5,9 @@ from api_data import data_lists, helper
 
 
 @allure.severity(allure.severity_level.BLOCKER)
-def test_get_list(new_list):
+def test_get_list(new_list, api_key, api_token):
     required_fields = ['name', 'id', 'idBoard']
-    get_list = data_lists.get_list(new_list['id'])
+    get_list = data_lists.get_list(new_list['id'], api_key, api_token)
     helper.check_status_code(get_list)
     helper.check_required_fields(get_list, required_fields)
     assert [get_list.json()['id'], get_list.json()['name'], get_list.json()['idBoard']]\
@@ -16,22 +16,21 @@ def test_get_list(new_list):
 
 
 @allure.severity(allure.severity_level.BLOCKER)
-@pytest.mark.skip
-def test_update_list(new_list):
+def test_update_list(new_list, api_key, api_token):
     new_data_for_list = {'name': 'updated_list'}
-    update_list = data_lists.update_list(new_list['id'], new_data_for_list)
+    update_list = data_lists.update_list(new_list['id'], new_data_for_list, api_key, api_token)
     helper.check_status_code(update_list)
     assert update_list.json()['name'] == 'updated_list'
 
 
 @allure.severity(allure.severity_level.BLOCKER)
-def test_create_list():
+def test_create_list(api_key, api_token):
     required_fields = ['id', 'name']
     data_for_list = {
         'name': 'test_list',
         'idBoard': '61e43d6f3fad02330a0a580f'
     }
-    create_list = data_lists.create_list(data_for_list)
+    create_list = data_lists.create_list(data_for_list, api_key, api_token)
     helper.check_status_code(create_list)
     helper.check_required_fields(create_list, required_fields)
     helper.check_required_fields(create_list, required_fields)
@@ -39,18 +38,18 @@ def test_create_list():
 
 
 @allure.severity(allure.severity_level.CRITICAL)
-def test_archive_list(new_list):
+def test_archive_list(new_list, api_key, api_token):
     value = {'closed': 'true'}
-    archived_list = data_lists.archive_a_list(new_list['id'], value)
+    archived_list = data_lists.archive_a_list(new_list['id'], value, api_key, api_token)
     helper.check_status_code(archived_list)
     assert archived_list.json()['closed']
 
 
 @allure.severity(allure.severity_level.CRITICAL)
-def test_unarchive_list(new_list):
+def test_unarchive_list(new_list, api_key, api_token):
     archive_value = {'closed': 'true'}
-    archived_list = data_lists.archive_a_list(new_list['id'], archive_value)
+    archived_list = data_lists.archive_a_list(new_list['id'], archive_value, api_key, api_token)
     unarchive_value = {'closed': 'false'}
-    unarchived_list = data_lists.archive_a_list(archived_list.json()['id'], unarchive_value)
+    unarchived_list = data_lists.archive_a_list(archived_list.json()['id'], unarchive_value, api_key, api_token)
     helper.check_status_code(unarchived_list)
     assert unarchived_list.json()['closed'] is False
