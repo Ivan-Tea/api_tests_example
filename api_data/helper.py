@@ -1,3 +1,4 @@
+""" Helper functions for api_data """
 import allure
 from schema import Schema
 

@@ -1,3 +1,4 @@
+""" Pytest configuration file """
 import pytest
 import allure
 from faker import Faker
@@ -11,12 +12,14 @@ def pytest_addoption(parser):
 
 @pytest.fixture()
 def api_key(pytestconfig):
-    return pytestconfig.getoption("api_key")
+    key = pytestconfig.getoption("api_key")
+    return key
 
 
 @pytest.fixture()
 def api_token(pytestconfig):
-    return pytestconfig.getoption("api_token")
+    token = pytestconfig.getoption("api_token")
+    return token
 
 
 @allure.step('step in conftest.py')
@@ -32,5 +35,5 @@ def new_list(api_key, api_token):
         'name': f'{fake.first_name()}',
         'idBoard': '61e43d6f3fad02330a0a580f'
     }
-    new_list = data_lists.create_list(data_for_list, api_key, api_token)
-    return new_list.json()
+    create_new_list = data_lists.create_list(data_for_list, api_key, api_token)
+    return create_new_list.json()

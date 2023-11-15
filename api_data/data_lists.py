@@ -1,7 +1,6 @@
+"""get data from lists"""
 import requests
 from config.urls import LISTS_URL
-
-# auth = f'?key={api_key}&token={api_token}'
 
 
 def get_list(id_list, api_key, api_token):
