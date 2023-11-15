@@ -29,7 +29,7 @@ def conftest_step():
 
 
 @pytest.fixture()
-def new_list(api_key, api_token):
+def new_list(custom_api_key, custom_api_token):
     """ Return a new list """
     conftest_step()
     fake = Faker()
