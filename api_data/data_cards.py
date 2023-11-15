@@ -1,3 +1,4 @@
+"""Will be used to get card data from the API"""
 def get_card():
-    """This function retrieves card data from the API."""
+    "will be used to get card data from the API"
     pass
