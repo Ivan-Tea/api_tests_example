@@ -37,5 +37,5 @@ def new_list(custom_api_key, custom_api_token):
         'name': f'{fake.first_name()}',
         'idBoard': '61e43d6f3fad02330a0a580f'
     }
-    create_new_list = data_lists.create_list(data_for_list, api_key, api_token)
+    create_new_list = data_lists.create_list(data_for_list, custom_api_key, custom_api_token)
     return create_new_list.json()
