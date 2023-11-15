@@ -38,7 +38,7 @@ def test_create_list(custom_api_key, custom_api_token):
 
 
 @allure.severity(allure.severity_level.CRITICAL)
-def test_archive_list(new_list, custom_api_key, custom_api_tokenn):
+def test_archive_list(new_list, custom_api_key, custom_api_token):
     value = {'closed': 'true'}
     archived_list = data_lists.archive_a_list(new_list['id'], value, custom_api_key, custom_api_token)
     helper.check_status_code(archived_list)
