@@ -1,7 +1,5 @@
 """ Tests for lists.py """
 import allure
-import pytest
-
 from api_data import data_lists, helper
 
 
