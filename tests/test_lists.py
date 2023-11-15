@@ -65,7 +65,7 @@ def test_unarchive_list(new_list, custom_api_key, custom_api_token):
     """ Test unarchive list """
     archive_value = {'closed': 'true'}
     archived_list = data_lists.archive_a_list(
-        new_list['id'], 
+        new_list['id'],
         archive_value,
         custom_api_key,
         custom_api_token
