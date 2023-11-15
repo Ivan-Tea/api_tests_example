@@ -4,11 +4,13 @@ from schema import Schema
 
 
 def check_status_code(response):
+    """ Check status code """
     with allure.step('Check status code'):
         assert response.status_code == 200
 
 
 def check_required_fields(response, fields):
+    """ Check required fields """
     with allure.step('Check required fields'):
         response_json = response.json()
         required_fields = [field for field in fields if response_json.get(field) is None]
@@ -16,6 +18,7 @@ def check_required_fields(response, fields):
 
 
 def check_json_scheme(response, scheme):
+    """ Check json scheme """
     with allure.step('Check json scheme'):
         schema_json = Schema(scheme)
         response_json = response.json()

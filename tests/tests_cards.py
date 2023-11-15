@@ -1,4 +1,5 @@
-
+""" Tests for cards.py """
 
 def test_get_card():
-    pass
+    """ Test get_card """
+

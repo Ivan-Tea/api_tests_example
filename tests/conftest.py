@@ -6,29 +6,31 @@ from api_data import data_lists
 
 
 def pytest_addoption(parser):
+    """ Add command line options """
     parser.addoption("--api_key", action="store", default="oops")
     parser.addoption("--api_token", action="store", default="oops")
 
 
 @pytest.fixture()
-def api_key(pytestconfig):
-    key = pytestconfig.getoption("api_key")
-    return key
+def custom_api_key(pytestconfig):
+    """ Return the API key """
+    return pytestconfig.getoption("api_key")
 
 
 @pytest.fixture()
-def api_token(pytestconfig):
-    token = pytestconfig.getoption("api_token")
-    return token
+def custom_api_token(pytestconfig):
+    """ Return the API token """
+    return pytestconfig.getoption("api_token")
 
 
 @allure.step('step in conftest.py')
 def conftest_step():
-    pass
+    """ A step in conftest.py """
 
 
 @pytest.fixture()
 def new_list(api_key, api_token):
+    """ Return a new list """
     conftest_step()
     fake = Faker()
     data_for_list = {
